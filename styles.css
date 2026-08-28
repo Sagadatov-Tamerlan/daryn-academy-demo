@@ -46,18 +46,19 @@ button { color: inherit; }
 
 .hero { position: relative; overflow: hidden; padding: 76px 0 94px; }
 .hero::before { position: absolute; content: ""; width: 440px; height: 440px; left: -270px; top: 80px; border-radius: 50%; background: #eff2e9; filter: blur(2px); }
-.hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 65px; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 65px; align-items: center; }
+.hero-copy { position: relative; z-index: 3; min-width: 0; }
 .eyebrow { display: flex; align-items: center; gap: 9px; margin-bottom: 19px; color: var(--green); font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .eyebrow span { width: 24px; height: 2px; background: var(--coral); }
 h1, h2, h3, p { margin-top: 0; }
-h1 { max-width: 680px; margin-bottom: 25px; font-size: clamp(43px, 5.2vw, 72px); line-height: 1.08; letter-spacing: -.055em; }
+h1 { position: relative; z-index: 4; max-width: 680px; margin-bottom: 25px; overflow-wrap: break-word; font-size: clamp(43px, 5.2vw, 72px); line-height: 1.08; letter-spacing: -.055em; }
 h1 em { color: var(--green); font-style: normal; }
 .hero-text { max-width: 610px; margin-bottom: 33px; color: var(--muted); font-size: 18px; line-height: 1.7; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
 .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 27px; color: var(--muted); font-size: 13px; }
 .note-icon { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--green-soft); color: var(--green); font-weight: 800; }
 
-.hero-visual { position: relative; min-height: 475px; }
+.hero-visual { position: relative; z-index: 1; min-width: 0; min-height: 475px; }
 .visual-orbit { position: absolute; border: 1px dashed rgba(47, 116, 95, .2); border-radius: 50%; }
 .orbit-one { inset: 20px 25px 20px 25px; }
 .orbit-two { inset: 72px; border-color: rgba(220, 123, 100, .24); }
@@ -156,7 +157,7 @@ h3 { margin-bottom: 10px; font-size: 20px; line-height: 1.3; letter-spacing: -.0
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
 
 @media (max-width: 980px) {
-  .hero-grid { gap: 25px; }.hero-visual { min-height: 420px; }.main-card { inset: 70px 40px 50px; }.float-b { right: -12px; }.float-a { left: -8px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 18px; }.hero-copy { max-width: 720px; }.hero-visual { width: min(100%, 560px); min-height: 420px; margin-inline: auto; }.main-card { inset: 70px 40px 50px; }.float-b { right: -12px; }.float-a { left: -8px; }
   .program-grid { grid-template-columns: repeat(2, 1fr); }.program-card { min-height: 315px; }
   .advantages-grid { gap: 55px; }.trial-card { padding: 45px 38px; gap: 35px; }
   .footer-main { grid-template-columns: .7fr 1fr; }.footer-main nav { grid-column: 1 / -1; justify-content: flex-start; }
@@ -167,7 +168,7 @@ h3 { margin-bottom: 10px; font-size: 20px; line-height: 1.3; letter-spacing: -.0
   .site-nav { position: fixed; inset: 68px 0 auto; display: flex; max-height: 0; overflow: hidden; flex-direction: column; align-items: stretch; gap: 4px; padding: 0 20px; background: rgba(251,250,246,.98); box-shadow: 0 20px 30px rgba(36,51,47,.09); opacity: 0; pointer-events: none; transition: max-height .3s, opacity .2s, padding .3s; }
   .site-nav.open { max-height: 420px; padding-block: 18px 24px; opacity: 1; pointer-events: auto; }.site-nav a { padding: 10px 8px !important; }.site-nav .button { margin-top: 5px; }
   .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-  .hero { padding: 50px 0 60px; }.hero-grid { grid-template-columns: 1fr; }.hero-copy { position: relative; z-index: 2; }.hero-visual { min-height: 390px; margin-top: 5px; }
+  .hero { padding: 50px 0 60px; }.hero-visual { min-height: 390px; margin-top: 5px; }
   h1 { font-size: clamp(39px, 12vw, 56px); }.hero-text { font-size: 16px; }.hero-actions .button { width: 100%; }.hero-note { justify-content: center; }
   .section { padding: 72px 0; }.section-heading { display: block; margin-bottom: 30px; }.section-heading > p { margin-top: 18px; }
   .advantages-grid { grid-template-columns: 1fr; gap: 45px; }.advantages-copy { position: static; }
